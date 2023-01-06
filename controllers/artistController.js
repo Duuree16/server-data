@@ -2,19 +2,31 @@ const { Artist } = require("../models");
 
 const createArtist = async (req, res) => {
   const body = req.body;
-  const result = await new Artist(body).save();
-  res.send(result);
+  try {
+    const result = await new Artist(body).save();
+    res.send(result);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const getArtist = async (req, res) => {
   const playlistId = req.params.playlistId;
-  const result = await Artist.find({ playlistId });
-  res.send(result);
+  try {
+    const result = await Artist.find({ playlistId });
+    res.send(result);
+  } catch (err) {
+    console.log(err);
+  }
 };
 const getArtists = async (_req, res) => {
-  const result = await Artist.find({});
-  res.send(result);
-  console.log(result);
+  try {
+    const result = await Artist.find({});
+    res.send(result);
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports = { getArtist, getArtists, createArtist };
